@@ -10,32 +10,34 @@ int main()
     SetConsoleCP(1251);
 
     /* Инициализация переменных */
-    std::string sex{};          // Пол
-    std::string zodiacSign{};   // Знак зодиака
-    int age{};                  // Возраст
+    int numberOne{};    // Введенное число 1
+    int numberTwo{};    // Введенное число 2
 
     /* Форма для пользователя */
-    std::cout << "Введите пол (м/ж):\n";
-    std::getline(std::cin >> std::ws, sex);
-    std::cout << "Введите знак зодиака (в нижнем регистре):\n";
-    std::getline(std::cin >> std::ws, zodiacSign);
-    std::cout << "Введите возраст:\n";
-    std::cin >> age;
-    std::cout << "Ваше предсказание:\n";
+    std::cout << "Введите целое число:\n";
+    std::cin >> numberOne;
+    std::cout << "Введите целое число:\n";
+    std::cin >> numberTwo;
 
-    /* Проверка с помощью операторов */
-    if (sex == "м" && (zodiacSign == "рыба" || zodiacSign == "рак" || zodiacSign == "скорпион") && age < 40)
+    /* Проверка введенных чисел на допустимый диапазон -100 - 100 */
+    if ((numberOne < -100 || numberOne > 100) || (numberTwo < -100 || numberTwo > 100))
     {
-        std::cout << "Сегодня очень плодотворный день. Можно добиться того, что прежде казалось почти невозможным.\n" << std::endl;
+        std::cout << "Ошибка! Одно из чисел вне диапазона (-100 - 100)!\n" << std::endl;
+        return EXIT_FAILURE;
     }
-    else if (sex == "ж" && (zodiacSign == "телец" || zodiacSign == "козерог" || zodiacSign == "дева") && age >= 15 && age <= 30)
+
+    /* Работа с числами с помощью операторов */
+    if (numberOne > numberTwo)
     {
-        std::cout << "Сегодняшний вечер подходит для общения с друзьями, проведения домашних праздников и импровизированных вечеринок.\n" << std::endl;
-        std::cout << "Будет не только весело, но и интересно : найдётся дело, которое увлечёт всех.\n" << std::endl;
+        std::cout << numberOne << " больше чем " << numberTwo << std::endl;
+    }
+    else if (numberOne < numberTwo)
+    {
+        std::cout << numberOne << " меньше чем " << numberTwo << std::endl;
     }
     else
     {
-        std::cout << "Гороскоп для вас находится в разработке. Приходите чуточку позже ;)\n" << std::endl;
+        std::cout << numberOne << " ровно " << numberTwo << std::endl;
     }
 
     return EXIT_SUCCESS;
