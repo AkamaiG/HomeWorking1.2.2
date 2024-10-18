@@ -12,7 +12,7 @@ int main()
     int age{};                  // Возраст
 
     /* Форма для пользователя */
-    std::cout << "Введите пол (м/ж):\n";
+    std::cout << "Введите пол (м/ж):" << std::endl;
     std::getline(std::cin >> std::ws, sex);
     std::cout << "Введите знак зодиака (в нижнем регистре):" << std::endl;
     std::getline(std::cin >> std::ws, zodiacSign);
