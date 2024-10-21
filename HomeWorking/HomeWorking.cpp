@@ -16,6 +16,8 @@ int main()
     std::cout << "Введите целое число:" << std::endl;
     std::cin >> writeNumber;
 
+    std::cout << writeNumber << std::endl;
+
     for (const auto &vectorItem : vector)
     {
         int result{ 0 };
