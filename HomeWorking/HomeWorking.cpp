@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#include <string>
+#include <vector>
 
 int main()
 {
@@ -7,17 +9,18 @@ int main()
 
     /* Инициализация переменных */
     int writeNumber{ 0 };
-    int totalClientNumber{ 0 };
-    
+
+    std::vector<int> vector{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
     /* Код программы */
-    std::cout << "Введите целое число или число '0', чтобы закончить:" << std::endl;
+    std::cout << "Введите целое число:" << std::endl;
     std::cin >> writeNumber;
-    while (writeNumber != 0) {
-        totalClientNumber += writeNumber;
-        std::cout << "Введите целое число или число '0', чтобы закончить:" << std::endl;
-        std::cin >> writeNumber;
+
+    for (const auto &vectorItem : vector)
+    {
+        int result{ 0 };
+        std::cout << writeNumber << " x " << vectorItem << " = " << (result = writeNumber * vectorItem) << std::endl;
     }
-    std::cout << "Сумма:" << totalClientNumber << std::endl;
 
     return EXIT_SUCCESS;
 }
