@@ -7,17 +7,25 @@ int main()
 
     /* Инициализация переменных */
     int writeNumber{ 0 };
-    int totalClientNumber{ 0 };
+    int sum{ 0 };
     
     /* Код программы */
-    std::cout << "Введите целое число или число '0', чтобы закончить:" << std::endl;
+    std::cout << "Введите целое число:" << std::endl;
     std::cin >> writeNumber;
-    while (writeNumber != 0) {
-        totalClientNumber += writeNumber;
-        std::cout << "Введите целое число или число '0', чтобы закончить:" << std::endl;
-        std::cin >> writeNumber;
+
+    /* Если отрицательное то приводим */
+    if (writeNumber < 0) {
+        writeNumber = -writeNumber;
     }
-    std::cout << "Сумма:" << totalClientNumber << std::endl;
+
+    /* Цикл перебора остатка */
+    while (writeNumber > 0) {
+        sum += writeNumber % 10;
+        writeNumber /= 10;
+    }
+    
+    /* Итоговый результат */
+    std::cout << "Сумма цифр: " << sum << std::endl;
 
     return EXIT_SUCCESS;
 }
