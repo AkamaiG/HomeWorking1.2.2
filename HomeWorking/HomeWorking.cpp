@@ -11,7 +11,6 @@ int main()
 
     int minNumber = array[0];
     int maxNumber = array[0];
-
     std::string numbers;
 
     /* Узнаем длину массива для цикла */
@@ -25,7 +24,6 @@ int main()
     /* Выводим содержимое строки массива */
     std::cout << "Массив: " << numbers << std::endl;
 
-    /* Перебираем циклом массив для определения минимального и максимального значения из массива */
     for (int number : array) {
         if (number < minNumber) {
             minNumber = number;
@@ -36,7 +34,6 @@ int main()
         }
     }
 
-    /* Выводим переменные min и max */
     std::cout << "Минимальный элемент: " << minNumber << std::endl;
     std::cout << "Максимальный элемент: " << maxNumber << std::endl;
 
