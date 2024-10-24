@@ -5,40 +5,50 @@ int main()
 {
     /* Установка кодировки */
     setlocale(LC_ALL, "rus");
+    
+    /* Инициализация переменных массива */
+    const int rows = 3;
+    const int cols = 6;
+    int array[rows][cols] = {
+        {5, 2, 8, 1, 6, 4},
+        {9, 0, 7, 3, 12, 11},
+        {14, 10, 15, 18, 17, 16}
+    };
 
-    /* Инициализация переменных */
-    int array[10] = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
-
-    int minNumber = array[0];
-    int maxNumber = array[0];
-
-    std::string numbers;
-
-    /* Узнаем длину массива для цикла */
-    int size = sizeof(array) / sizeof(array[0]);
-
-    /* Собираем содержимое массива в строку */
-    for (int i = 0; i < size; ++i) {
-        numbers += std::to_string(array[i]) + " ";
+    /* Выводим массив */
+    std::cout << "Массив:" << std::endl;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << array[i][j] << "\t";
+        }
+        std::cout << std::endl;
     }
 
-    /* Выводим содержимое строки массива */
-    std::cout << "Массив: " << numbers << std::endl;
+    /* Инициализация переменных для минимального и максимального значения */
+    int minIndex[2] = { 0, 0 };
+    int maxIndex[2] = { 0, 0 };
+    int minValue = array[0][0];
+    int maxValue = array[0][0];
 
-    /* Перебираем циклом массив для определения минимального и максимального значения из массива */
-    for (int number : array) {
-        if (number < minNumber) {
-            minNumber = number;
-        }
-
-        if (number > maxNumber) {
-            maxNumber = number;
+    /* Находим минимальное и максимальное значения и их индексы */
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            if (array[i][j] < minValue) {
+                minValue = array[i][j];
+                minIndex[0] = i;
+                minIndex[1] = j;
+            }
+            if (array[i][j] > maxValue) {
+                maxValue = array[i][j];
+                maxIndex[0] = i;
+                maxIndex[1] = j;
+            }
         }
     }
 
-    /* Выводим переменные min и max */
-    std::cout << "Минимальный элемент: " << minNumber << std::endl;
-    std::cout << "Максимальный элемент: " << maxNumber << std::endl;
+    /* Выводим индексы минимального и максимального элемента */
+    std::cout << "Индекс минимального элемента: " << minIndex[0] << " " << minIndex[1] << std::endl;
+    std::cout << "Индекс максимального элемента: " << maxIndex[0] << " " << maxIndex[1] << std::endl;
 
 
     return EXIT_SUCCESS;
