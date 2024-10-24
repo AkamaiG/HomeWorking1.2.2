@@ -3,18 +3,43 @@
 
 int main()
 {
-    /* Создаем массив из 10 целых чисел */
+    /* Установка кодировки */
+    setlocale(LC_ALL, "rus");
+
+    /* Инициализация переменных */
     int array[10] = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
-    /* Выводим элементы массива через запятую и пробел */
-    for (int i = 0; i < 10; ++i) {
-        std::cout << array[i];
-        if (i < 9) { // Добавляем запятую и пробел, если это не последний элемент
-            std::cout << ", ";
+    int minNumber = array[0];
+    int maxNumber = array[0];
+
+    std::string numbers;
+
+    /* Узнаем длину массива для цикла */
+    int size = sizeof(array) / sizeof(array[0]);
+
+    /* Собираем содержимое массива в строку */
+    for (int i = 0; i < size; ++i) {
+        numbers += std::to_string(array[i]) + " ";
+    }
+
+    /* Выводим содержимое строки массива */
+    std::cout << "Массив: " << numbers << std::endl;
+
+    /* Перебираем циклом массив для определения минимального и максимального значения из массива */
+    for (int number : array) {
+        if (number < minNumber) {
+            minNumber = number;
+        }
+
+        if (number > maxNumber) {
+            maxNumber = number;
         }
     }
 
-    std::cout << std::endl;
+    /* Выводим переменные min и max */
+    std::cout << "Минимальный элемент: " << minNumber << std::endl;
+    std::cout << "Максимальный элемент: " << maxNumber << std::endl;
+
 
     return EXIT_SUCCESS;
 }
