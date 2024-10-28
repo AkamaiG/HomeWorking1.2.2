@@ -1,22 +1,34 @@
-﻿#include <iostream>
+﻿
+#include <iostream>
+#include <string>
 
-void calc_func(int value, int power, int result)
-{
-	for (int i = 0; i < power; i++)
-	{
-		result *= value;
-	}
-
-	std::cout << value << " в степени " << power << " = " << result << std::endl;
+int fibonacci(int n) {
+    if (n == 0) {
+        return 0;
+    }
+    else if (n == 1) {
+        return 1;
+    }
+    else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
 }
 
-int main(int argc, char** argv)
-{
-	setlocale(LC_ALL, "rus");
+int main(int argc, char** argv) {
+    setlocale(LC_ALL, "rus");
 
-	calc_func(5, 2, 1);
-	calc_func(3, 3, 1);
-	calc_func(4, 4, 1);
+    int count{ 0 };
 
-	return EXIT_SUCCESS;
+    std::cout << "Введите число: ";
+    std::cin >> count;
+
+    std::cout << "Числа Фибоначчи: ";
+
+    for (int i = 0; i < count; ++i) {
+        std::cout << fibonacci(i) << " ";
+    }
+
+    std::cout << std::endl;
+
+    return EXIT_SUCCESS;
 }
