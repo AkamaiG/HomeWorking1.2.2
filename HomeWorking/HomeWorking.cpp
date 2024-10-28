@@ -1,38 +1,35 @@
 ﻿#include <iostream>
 #include <string>
 
+int sum(int a, int b) {
+	return a + b;
+}
+
+int diff(int a, int b) {
+	return a - b;
+}
+
+int multiplication(int a, int b) {
+	return a * b;
+}
+
+double division(int a, int b) {
+	return static_cast<double>(a) / b;
+}
+
 int main()
 {
-    /* Установка кодировки */
-    setlocale(LC_ALL, "rus");
-    
-    /* Инициализация массива целых чисел */
-    int arr[10] = { 34, 12, 5, 67, 23, 90, 1, 45, 28, 76 };
+	int a = 5, b = 10;
 
-    /* Вывод массива до сортировки */
-    std::cout << "Массив до сортировки: ";
-    for (int i = 0; i < 10; i++) {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
+	int s = sum(a, b);
+	int dif = diff(a, b);
+	int mult = multiplication(a, b);
+	double div = division(a, b);
 
-    /* Сортировка массива пузырьком в обратном порядке */
-    for (int i = 0; i < 10 - 1; i++) {
-        for (int j = 0; j < 10 - 1 - i; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
+	std::cout << a << " + " << b << " = " << s << std::endl;
+	std::cout << a << " - " << b << " = " << dif << std::endl;
+	std::cout << a << " * " << b << " = " << mult << std::endl;
+	std::cout << a << " / " << b << " = " << div << std::endl;
 
-    /* Вывод массива после сортировки */
-    std::cout << "Массив после сортировки: ";
-    for (int i = 0; i < 10; i++) {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
-
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
