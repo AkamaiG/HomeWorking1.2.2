@@ -2,22 +2,20 @@
 #include <iostream>
 #include <string>
 
-void swap(int &a, int &b)
+void counting_function()
 {
-	a = a + b;
-	b = a - b;
-	a = a - b;
+    static int count{};
+	std::cout << "Количество вызовов функции counting_function(): " << ++count << std::endl;
 }
 
 int main(int argc, char** argv)
 {
-	int a = 5, b = 8;
+	setlocale(LC_ALL, "ru");
 
-	std::cout << "a = " << a << ", b = " << b << std::endl;
+    for (int i = 0; i < 15; i++)
+    {
+        counting_function();
+    }
 
-	swap(a, b);
-
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
