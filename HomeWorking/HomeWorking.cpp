@@ -1,20 +1,34 @@
 ﻿#include <iostream>
+#include <string>
 
-void swap(int* a, int* b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+void reverse(int* arr, int size) {
+    for (int i = 0; i < size / 2; ++i) {
+        int temp = arr[i];
+        arr[i] = arr[size - 1 - i];
+        arr[size - 1 - i] = temp;
+    }
+}
+
+void printArray(const int* arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
 }
 
 int main(int argc, char** argv) {
-    int a = 5;
-    int b = 10;
+    setlocale(LC_ALL, "ru");
 
-    std::cout << "a = " << a << ", b = " << b << std::endl;
+    const int size = 10;
+    int arr[size] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    swap(&a, &b);
+    std::cout << "До функции reverse: ";
+    printArray(arr, size);
 
-    std::cout << "a = " << a << ", b = " << b << std::endl;
+    reverse(arr, size);
+
+    std::cout << "После функции reverse: ";
+    printArray(arr, size);
 
     return EXIT_SUCCESS;
 }
