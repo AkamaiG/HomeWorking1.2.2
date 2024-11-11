@@ -1,22 +1,28 @@
 ﻿#include <iostream>
+#include <string>
 
-void print(const int* array, size_t size) {
-    for (size_t i = 0; i < size; ++i) {
+int main(int argc, char** argv) {
+    setlocale(LC_ALL, "RUS");
+
+    int size;
+
+    std::cout << "Введите размер массива: ";
+    std::cin >> size;
+
+    int* array = new int[size];
+
+    for (int i = 0; i < size; ++i) {
+        std::cout << "array[" << i << "] = ";
+        std::cin >> array[i];
+    }
+
+    std::cout << "Введённый массив: ";
+    for (int i = 0; i < size; ++i) {
         std::cout << array[i] << " ";
     }
     std::cout << std::endl;
-}
 
-int main(int argc, char** argv) {
-    int array1[] = { 1, 2, 3, 4, 5 };
-    int array2[] = { 10, 20, 30 };
-    int array3[] = { 7, 8, 9, 10, 11, 12, 13 };
-
-    print(array1, sizeof(array1) / sizeof(array1[0]));
-
-    print(array2, sizeof(array2) / sizeof(array2[0]));
-
-    print(array3, sizeof(array3) / sizeof(array3[0]));
+    delete[] array;
 
     return EXIT_SUCCESS;
 }
