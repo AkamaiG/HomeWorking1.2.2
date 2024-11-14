@@ -4,19 +4,21 @@
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "RUS");
 
-    std::string firstName;
-    std::string lastName;
+    std::string secretWord = "netology";
+    std::string userInput;
 
-    // Запрос имени у пользователя
-    std::cout << "Введите имя: ";
-    std::getline(std::cin, firstName);
+    std::cout << "Угадайте слово: ";
 
-    std::cout << "Введите фамилию: ";
-    std::getline(std::cin, lastName);
-
-    std::string fullName = firstName + " " + lastName;
-
-    std::cout << "Здравствуйте, " << fullName << "!" << std::endl;
+    while (true) {
+        std::getline(std::cin, userInput);
+        if (userInput == secretWord) {
+            std::cout << "Правильно! Вы победили! Загаданное слово — " << secretWord << std::endl;
+            break;
+        }
+        else {
+            std::cout << "Неправильно\nУгадайте слово: ";
+        }
+    }
 
     return EXIT_SUCCESS;
 }
