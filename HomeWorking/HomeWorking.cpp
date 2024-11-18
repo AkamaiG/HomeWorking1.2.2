@@ -1,22 +1,32 @@
 ﻿#include <iostream>
 #include <fstream>
-#include <string>
 
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "rus");
 
-    std::ifstream file("in.txt");
-
-    if (!file.is_open()) {
-        std::cerr << "Ошибка при открытии файла." << std::endl;
-        return 1;
+    std::ifstream inputFile("in.txt");
+    if (!inputFile) {
+        std::cerr << "Не удалось открыть файл!" << std::endl;
+        return EXIT_FAILURE;
     }
 
-    std::string word;
-    while (file >> word) {
-        std::cout << word << std::endl;
+    int n;
+    inputFile >> n;
+
+    int arr[100];
+
+    // Считываем массив из файла
+    for (int i = 0; i < n; ++i) {
+        inputFile >> arr[i];
     }
 
-    file.close();
+    inputFile.close();
+
+    for (int i = n - 1; i >= 0; --i) {
+        std::cout << arr[i] << " ";
+    }
+
+    std::cout << std::endl;
+
     return EXIT_SUCCESS;
 }
