@@ -1,3 +1,2 @@
-Potatoes cabbage
-Raspberries strawberries cherries
-Apple pear orange
+5
+1 2 3 4 5
