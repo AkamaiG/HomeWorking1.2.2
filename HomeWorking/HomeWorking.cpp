@@ -3,34 +3,32 @@
 
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "Rus");
-    int size;
 
-    std::cout << "Введите размер массива: ";
-    std::cin >> size;
-
-    int* array = new int[size];
-
-    for (int i = 0; i < size; ++i) {
-        std::cout << "array[" << i << "] = ";
-        std::cin >> array[i];
-    }
-
-    std::ofstream outFile("out.txt");
-    if (!outFile) {
-        std::cerr << "Не удалось открыть файл для записи." << std::endl;
-        delete[] array;
+    std::ifstream inputFile("in.txt");
+    if (!inputFile) {
+        std::cerr << "Ошибка открытия файла." << std::endl;
         return EXIT_FAILURE;
     }
 
-    outFile << size << std::endl;
+    int rows, cols;
+    inputFile >> rows >> cols;
 
-    for (int i = size - 1; i >= 0; --i) {
-        outFile << array[i] << " ";
+    int array[50][50];
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            inputFile >> array[i][j];
+        }
     }
 
-    outFile.close();
+    inputFile.close();
 
-    delete[] array;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = cols - 1; j >= 0; --j) {
+            std::cout << array[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 
     return EXIT_SUCCESS;
 }
