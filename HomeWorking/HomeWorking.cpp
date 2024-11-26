@@ -6,7 +6,10 @@
 
 using namespace std;
 
-void printUniverse(int rows, int cols, char universe[][30], int generation, int aliveCount) {
+const int MAX_ROWS = 20;
+const int MAX_COLS = 30;
+
+void printUniverse(int rows, int cols, char universe[][MAX_COLS], int generation, int aliveCount) {
     system("cls");
     cout << "Generation: " << generation << ". Alive cells: " << aliveCount << endl;
     for (int i = 0; i < rows; ++i) {
@@ -18,7 +21,7 @@ void printUniverse(int rows, int cols, char universe[][30], int generation, int 
     cout << endl;
 }
 
-int countAliveNeighbors(int rows, int cols, char universe[][30], int x, int y) {
+int countAliveNeighbors(int rows, int cols, char universe[][MAX_COLS], int x, int y) {
     int aliveCount = 0;
     for (int i = -1; i <= 1; ++i) {
         for (int j = -1; j <= 1; ++j) {
@@ -36,7 +39,14 @@ int countAliveNeighbors(int rows, int cols, char universe[][30], int x, int y) {
 
 int main() {
     int rows, cols;
-    char universe[20][30] = { '-' };
+    char universe[MAX_ROWS][MAX_COLS];
+
+    // Инициализируем вселенную пустыми клетками
+    for (int i = 0; i < MAX_ROWS; ++i) {
+        for (int j = 0; j < MAX_COLS; ++j) {
+            universe[i][j] = '-';
+        }
+    }
 
     ifstream inputFile("input.txt");
     if (!inputFile) {
@@ -48,13 +58,16 @@ int main() {
 
     int x, y;
     while (inputFile >> x >> y) {
-        universe[x][y] = '*';
+        if (x >= 0 && x < rows && y >= 0 && y < cols) {
+            universe[x][y] = '*';
+        }
     }
     inputFile.close();
 
-    int generation = 0;
+    int generation = 1;
     int aliveCount = 0;
 
+    // Подсчет начального количества живых клеток
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             if (universe[i][j] == '*') {
@@ -64,14 +77,13 @@ int main() {
     }
 
     while (aliveCount > 0) {
-        char newUniverse[20][30] = { '-' };
+        char newUniverse[MAX_ROWS][MAX_COLS];
         int newAliveCount = 0;
 
-        if (generation != 0) {
-            printUniverse(rows, cols, universe, generation, aliveCount);
-            Sleep(1000);
-		}
+        printUniverse(rows, cols, universe, generation, aliveCount);
+        Sleep(1000);
 
+        // Основная логика перехода к следующему поколению
         for (int i = 0; i < rows; ++i) {
             for (int j = 0; j < cols; ++j) {
                 int neighbors = countAliveNeighbors(rows, cols, universe, i, j);
@@ -91,6 +103,7 @@ int main() {
             }
         }
 
+        // Проверка на устойчивую конфигурацию
         bool stable = true;
         for (int i = 0; i < rows; ++i) {
             for (int j = 0; j < cols; ++j) {
@@ -102,7 +115,7 @@ int main() {
             if (!stable) break;
         }
 
-
+        // Обновление вселенной
         for (int i = 0; i < rows; ++i) {
             for (int j = 0; j < cols; ++j) {
                 universe[i][j] = newUniverse[i][j];
