@@ -11,7 +11,7 @@ const int MAX_COLS = 30;
 
 void printUniverse(int rows, int cols, char universe[][MAX_COLS], int generation, int aliveCount) {
     system("cls");
-    cout << "Generation: " << generation << ". Alive cells: " << aliveCount << endl;
+    cout << "Generation: " << generation + 1 << ". Alive cells: " << aliveCount << endl;
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             cout << universe[i][j] << ' ';
@@ -64,7 +64,7 @@ int main() {
     }
     inputFile.close();
 
-    int generation = 1;
+    int generation = 0;
     int aliveCount = 0;
 
     // Подсчет начального количества живых клеток
@@ -122,13 +122,14 @@ int main() {
             }
         }
 
+        generation++;
+
         if (stable) {
             printUniverse(rows, cols, universe, generation, aliveCount);
             cout << "Game over: stable configuration reached." << endl;
             break;
         }
 
-        generation++;
         aliveCount = newAliveCount;
     }
 
